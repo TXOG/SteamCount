@@ -31,12 +31,16 @@ game_name = ""
 api_key = os.getenv('API_KEY')
 steam_id = os.getenv('STEAM_ID')
 
+
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None, *args, **kwargs):
         super(MainWindow, self).__init__(parent, *args, **kwargs)
         self.setupUi(self)
 
         if os.path.exists('.env'):
+            updateWindowThread = threading.Thread(
+                target=lambda: checkForGameChange())  # Use lambda to pass the method as a callable
+            updateWindowThread.start()
             self.mainStack.setCurrentWidget(self.main)
         else:
             self.mainStack.setCurrentWidget(self.setup)
@@ -50,7 +54,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if len(api_key) > 0 and len(steam_id) > 0:
             with open('.env', 'w+') as envfile:
                 envfile.write(f"API_KEY = '{api_key}' \nSTEAM_ID = '{steam_id}'")
-            self.mainStack.setCurrentWidget(self.main)
+
+                updateWindowThread = threading.Thread(
+                    target=lambda: checkForGameChange())  # Use lambda to pass the method as a callable
+                updateWindowThread.start()
+                self.mainStack.setCurrentWidget(self.main)
+
+
         else:
             return
 
@@ -91,11 +101,17 @@ def checkForGameChange():
             player_info = data['response']['players'][0]
 
             if 'gameextrainfo' in player_info:
+
+                print(player_info)
+
                 game_name = player_info['gameextrainfo']
 
                 if currentGameName != game_name:
                     currentGameName = game_name
                     requestAPIData(game_name)
+
+            else:
+                window.currentGameText.setText(("Currently Playing: NONE"))
 
         time.sleep(1)
 
