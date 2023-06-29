@@ -45,7 +45,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         if len(api_key) > 0 and len(steam_id) > 0:
             with open('.env', 'w+') as envfile:
-                envfile.write()
+                envfile.write(f"API_KEY = '{api_key}' \nSTEAM_ID = '{steam_id}'")
+            self.mainStack.setCurrentWidget(self.main)
         else:
             return
 
