@@ -17,8 +17,6 @@ from PySide6 import QtWidgets
 from PySide6.QtCore import QByteArray
 from PySide6.QtCore import QDir
 
-load_dotenv()
-
 steam_id = os.getenv("STEAM_ID")
 api_key = os.getenv("API_KEY")
 
@@ -32,11 +30,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None, *args, **kwargs):
         super(MainWindow, self).__init__(parent, *args, **kwargs)
         self.setupUi(self)
-
-
-
-
-
 
 def requestAPIData(game_name):
     url = f"https://api.steampowered.com/ISteamApps/GetAppList/v2/"
@@ -65,7 +58,7 @@ def requestAPIData(game_name):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = MainWindow()
-    window.setWindowTitle(" ")
+    window.setWindowTitle("Enter Details")
     window.show()
     sys.exit(app.exec())
 
