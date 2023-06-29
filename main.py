@@ -31,6 +31,25 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         super(MainWindow, self).__init__(parent, *args, **kwargs)
         self.setupUi(self)
 
+        if os.path.exists('.env'):
+            self.mainStack.setCurrentWidget(self.main)
+        else:
+            self.mainStack.setCurrentWidget(self.setup)
+
+
+        self.submitButton.clicked.connect(lambda: self.createENV())
+
+    def createENV(self):
+        api_key = self.apiKeyInput.text()
+        steam_id = self.steamIDInput.text()
+
+        if len(api_key) > 0 and len(steam_id) > 0:
+            with open('.env', 'w+') as envfile:
+                envfile.write()
+        else:
+            return
+
+
 def requestAPIData(game_name):
     url = f"https://api.steampowered.com/ISteamApps/GetAppList/v2/"
     response = requests.get(url)
@@ -58,7 +77,7 @@ def requestAPIData(game_name):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = MainWindow()
-    window.setWindowTitle("Enter Details")
+    window.setWindowTitle("Steam Count")
     window.show()
     sys.exit(app.exec())
 
