@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'windowyjINbA.ui'
+## Form generated from reading UI file 'windowSFcRyi.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.3.1
 ##
@@ -108,7 +108,7 @@ class Ui_MainWindow(object):
         self.main.setStyleSheet(u"background-color: rgb(27, 40, 56);")
         self.currentGameText = QLabel(self.main)
         self.currentGameText.setObjectName(u"currentGameText")
-        self.currentGameText.setGeometry(QRect(0, 30, 801, 61))
+        self.currentGameText.setGeometry(QRect(0, 110, 801, 61))
         font1 = QFont()
         font1.setFamilies([u"Segoe UI"])
         font1.setPointSize(32)
@@ -116,6 +116,33 @@ class Ui_MainWindow(object):
         self.currentGameText.setFont(font1)
         self.currentGameText.setStyleSheet(u"color: rgb(255, 255, 255);")
         self.currentGameText.setAlignment(Qt.AlignCenter)
+        self.gameImage = QLabel(self.main)
+        self.gameImage.setObjectName(u"gameImage")
+        self.gameImage.setGeometry(QRect(19, 190, 771, 215))
+        self.gameImage.setAlignment(Qt.AlignCenter)
+        self.currentPlayerNumber = QLabel(self.main)
+        self.currentPlayerNumber.setObjectName(u"currentPlayerNumber")
+        self.currentPlayerNumber.setGeometry(QRect(0, 440, 801, 61))
+        font2 = QFont()
+        font2.setFamilies([u"Segoe UI"])
+        font2.setPointSize(26)
+        font2.setBold(True)
+        self.currentPlayerNumber.setFont(font2)
+        self.currentPlayerNumber.setStyleSheet(u"color: rgb(255, 255, 255);")
+        self.currentPlayerNumber.setAlignment(Qt.AlignCenter)
+        self.pfpImage = QLabel(self.main)
+        self.pfpImage.setObjectName(u"pfpImage")
+        self.pfpImage.setGeometry(QRect(720, 20, 64, 64))
+        self.pfpImage.setAlignment(Qt.AlignCenter)
+        self.playerName = QLabel(self.main)
+        self.playerName.setObjectName(u"playerName")
+        self.playerName.setGeometry(QRect(20, 15, 671, 71))
+        font3 = QFont()
+        font3.setPointSize(14)
+        font3.setBold(False)
+        self.playerName.setFont(font3)
+        self.playerName.setStyleSheet(u"color: rgb(255, 255, 255);")
+        self.playerName.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
         self.mainStack.addWidget(self.main)
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -132,5 +159,9 @@ class Ui_MainWindow(object):
         self.submitButton.setText(QCoreApplication.translate("MainWindow", u"Submit", None))
         self.background.setText("")
         self.currentGameText.setText(QCoreApplication.translate("MainWindow", u"Currently Playing: NONE", None))
+        self.gameImage.setText("")
+        self.currentPlayerNumber.setText(QCoreApplication.translate("MainWindow", u"Current Players: NONE", None))
+        self.pfpImage.setText("")
+        self.playerName.setText(QCoreApplication.translate("MainWindow", u"Null", None))
     # retranslateUi
 

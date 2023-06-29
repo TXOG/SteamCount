@@ -20,6 +20,7 @@ from PySide6.QtCore import Qt, QPoint, QRect
 from PySide6 import QtWidgets
 from PySide6.QtCore import QByteArray
 from PySide6.QtCore import QDir
+from PIL import Image
 
 load_dotenv()
 
@@ -172,7 +173,13 @@ def checkForGameChange():
                 window.playerName.setText(player_info['personaname'])
 
                 window.currentGameText.setText(("Currently Playing: NONE"))
-
+                window.currentGameText.setStyleSheet('''
+                color: '#FFFFFF'
+                ''')
+                window.gameImage.setStyleSheet('''
+                                background-image: url('./placeholder.jpg');
+                                ''')
+                window.currentPlayerNumber.setText(("Current Players: NONE"))
         time.sleep(1)
 
 
