@@ -1,7 +1,21 @@
 import os
+import sys
 from plyer import notification
 import requests
 from dotenv import load_dotenv
+from ui_window import Ui_MainWindow
+
+from PySide6 import QtCore
+from PySide6.QtCore import *
+from PySide6.QtWidgets import *
+from PySide6 import QtGui
+from PySide6.QtGui import QFont, QFontDatabase
+from PySide6.QtGui import *
+from PySide6.QtWidgets import QApplication, QMainWindow, QGraphicsDropShadowEffect, QDialog, QFileDialog
+from PySide6.QtCore import Qt, QPoint, QRect
+from PySide6 import QtWidgets
+from PySide6.QtCore import QByteArray
+from PySide6.QtCore import QDir
 
 load_dotenv()
 
@@ -12,6 +26,17 @@ exitLoop = False
 
 currentGameName = "None"
 game_name = ""
+
+
+class MainWindow(QMainWindow, Ui_MainWindow):
+    def __init__(self, parent=None, *args, **kwargs):
+        super(MainWindow, self).__init__(parent, *args, **kwargs)
+        self.setupUi(self)
+
+
+
+
+
 
 def requestAPIData(game_name):
     url = f"https://api.steampowered.com/ISteamApps/GetAppList/v2/"
@@ -38,19 +63,27 @@ def requestAPIData(game_name):
 
 
 if __name__ == "__main__":
-    while exitLoop == False:
-        url = f"https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key={api_key}&steamids={steam_id}"
-        response = requests.get(url)
+    app = QApplication(sys.argv)
+    window = MainWindow()
+    window.setWindowTitle(" ")
+    window.show()
+    sys.exit(app.exec())
 
-        if response.status_code == 200:
-            data = response.json()
-            player_info = data['response']['players'][0]
 
-            if 'gameextrainfo' in player_info:
-                game_name = player_info['gameextrainfo']
 
-                if currentGameName != game_name:
-                    currentGameName = game_name
-                    requestAPIData(game_name)
-        else:
-            print("Server Problem")
+    # while exitLoop == False:
+    #     url = f"https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key={api_key}&steamids={steam_id}"
+    #     response = requests.get(url)
+    #
+    #     if response.status_code == 200:
+    #         data = response.json()
+    #         player_info = data['response']['players'][0]
+    #
+    #         if 'gameextrainfo' in player_info:
+    #             game_name = player_info['gameextrainfo']
+    #
+    #             if currentGameName != game_name:
+    #                 currentGameName = game_name
+    #                 requestAPIData(game_name)
+    #     else:
+    #         print("Server Problem")
