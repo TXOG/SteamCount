@@ -39,6 +39,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 if response.status_code == 200:
                     with open("profilePicture.jpg", "wb") as f:
                         f.write(response.content)
+                        f.close()
+
                 else:
                     print("Error getting profile picture")
 
@@ -155,7 +157,6 @@ def checkForGameChange():
                     background-origin: content;
                     background-clip: border;
                     background-size: 100% 100%;
-                    border-radius: 75px;
                 ''')
 
                 window.playerName.setText(player_info['personaname'])
@@ -168,7 +169,7 @@ def checkForGameChange():
                                 background-image: url('./placeholder.jpg');
                                 ''')
                 window.currentPlayerNumber.setText(("Current Players: NONE"))
-        time.sleep(1)
+        time.sleep(0.1)
 
 
 if __name__ == "__main__":
