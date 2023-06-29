@@ -21,8 +21,7 @@ from PySide6 import QtWidgets
 from PySide6.QtCore import QByteArray
 from PySide6.QtCore import QDir
 
-steam_id = os.getenv("STEAM_ID")
-api_key = os.getenv("API_KEY")
+load_dotenv()
 
 exitLoop = False
 
@@ -41,7 +40,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.mainStack.setCurrentWidget(self.main)
         else:
             self.mainStack.setCurrentWidget(self.setup)
-
 
         self.submitButton.clicked.connect(lambda: self.createENV())
 
@@ -67,14 +65,15 @@ def requestAPIData(game_name):
 
         for app in app_list:
             if app['name'] == game_name:
-
-                url = "http://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v0001/?appid=" + str(app['appid'])
+                url = "http://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v0001/?appid=" + str(
+                    app['appid'])
 
                 response = requests.get(url)
 
                 playerCount = str(response.json()['response']['player_count'])
 
-                notification.notify(title= f"You have launched: {game_name}", message= f"Player Count: {playerCount}", timeout=5)
+                notification.notify(title=f"You have launched: {game_name}", message=f"Player Count: {playerCount}",
+                                    timeout=5)
 
         return None
     else:
@@ -99,6 +98,7 @@ def checkForGameChange():
                     requestAPIData(game_name)
 
         time.sleep(1)
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
