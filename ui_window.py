@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'windowSFcRyi.ui'
+## Form generated from reading UI file 'windowIzhlLC.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.3.1
+## Created by: Qt User Interface Compiler version 6.4.3
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -118,14 +118,14 @@ class Ui_MainWindow(object):
         self.currentGameText.setAlignment(Qt.AlignCenter)
         self.gameImage = QLabel(self.main)
         self.gameImage.setObjectName(u"gameImage")
-        self.gameImage.setGeometry(QRect(19, 190, 771, 215))
+        self.gameImage.setGeometry(QRect(170, 190, 461, 215))
         self.gameImage.setAlignment(Qt.AlignCenter)
         self.currentPlayerNumber = QLabel(self.main)
         self.currentPlayerNumber.setObjectName(u"currentPlayerNumber")
-        self.currentPlayerNumber.setGeometry(QRect(0, 440, 801, 61))
+        self.currentPlayerNumber.setGeometry(QRect(0, 420, 801, 61))
         font2 = QFont()
         font2.setFamilies([u"Segoe UI"])
-        font2.setPointSize(26)
+        font2.setPointSize(20)
         font2.setBold(True)
         self.currentPlayerNumber.setFont(font2)
         self.currentPlayerNumber.setStyleSheet(u"color: rgb(255, 255, 255);")
@@ -162,6 +162,6 @@ class Ui_MainWindow(object):
         self.gameImage.setText("")
         self.currentPlayerNumber.setText(QCoreApplication.translate("MainWindow", u"Current Players: NONE", None))
         self.pfpImage.setText("")
-        self.playerName.setText(QCoreApplication.translate("MainWindow", u"Null", None))
+        self.playerName.setText("")
     # retranslateUi
 

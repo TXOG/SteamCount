@@ -200,9 +200,9 @@ background-size: 100% 100%;
      <widget class="QLabel" name="gameImage">
       <property name="geometry">
        <rect>
-        <x>19</x>
+        <x>170</x>
         <y>190</y>
-        <width>771</width>
+        <width>461</width>
         <height>215</height>
        </rect>
       </property>
@@ -217,7 +217,7 @@ background-size: 100% 100%;
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>440</y>
+        <y>420</y>
         <width>801</width>
         <height>61</height>
        </rect>
@@ -225,7 +225,7 @@ background-size: 100% 100%;
       <property name="font">
        <font>
         <family>Segoe UI</family>
-        <pointsize>26</pointsize>
+        <pointsize>20</pointsize>
         <bold>true</bold>
        </font>
       </property>
@@ -274,7 +274,7 @@ background-size: 100% 100%;
        <string notr="true">color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
-       <string>Null</string>
+       <string/>
       </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>

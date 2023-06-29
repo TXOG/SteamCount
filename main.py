@@ -9,7 +9,6 @@ from threading import Thread
 from ui_window import Ui_MainWindow
 from PySide6.QtWidgets import QApplication, QMainWindow, QGraphicsDropShadowEffect, QDialog, QFileDialog
 
-
 load_dotenv()
 
 exitLoop = False
@@ -37,6 +36,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 response = requests.get(player_info['avatarmedium'])
 
                 if response.status_code == 200:
+                    print("Woooo")
                     with open("profilePicture.jpg", "wb") as f:
                         f.write(response.content)
                         f.close()
@@ -67,6 +67,26 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if len(api_key) > 0 and len(steam_id) > 0:
             with open('.env', 'w+') as envfile:
                 envfile.write(f"API_KEY = '{api_key}' \nSTEAM_ID = '{steam_id}'")
+
+                url = f"https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key={api_key}&steamids={steam_id}"
+                response = requests.get(url)
+
+                if response.status_code == 200:
+                    data = response.json()
+                    player_info = data['response']['players'][0]
+
+                    response = requests.get(player_info['avatarmedium'])
+
+                    if response.status_code == 200:
+                        with open("profilePicture.jpg", "wb") as f:
+                            f.write(response.content)
+                            f.close()
+
+                    else:
+                        print("Error getting profile picture")
+
+                else:
+                    print("Error getting Player Summaries")
 
                 updateWindowThread = threading.Thread(
                     target=lambda: checkForGameChange())  # Use lambda to pass the method as a callable
@@ -123,7 +143,6 @@ def requestAPIData(game_name):
                 background-repeat: no-repeat;
                 background-origin: content;
                 background-clip: border;
-                background-size: 100% 100%;
                 ''')
                 window.currentPlayerNumber.setText(("Current Players: " + playerCount))
 
@@ -156,7 +175,6 @@ def checkForGameChange():
                     background-repeat: no-repeat;
                     background-origin: content;
                     background-clip: border;
-                    background-size: 100% 100%;
                 ''')
 
                 window.playerName.setText(player_info['personaname'])
