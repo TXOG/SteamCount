@@ -2,25 +2,13 @@ import os
 import sys
 import threading
 import time
-
 from plyer import notification
 import requests
 from dotenv import load_dotenv
 from threading import Thread
 from ui_window import Ui_MainWindow
-
-from PySide6 import QtCore
-from PySide6.QtCore import *
-from PySide6.QtWidgets import *
-from PySide6 import QtGui
-from PySide6.QtGui import QFont, QFontDatabase
-from PySide6.QtGui import *
 from PySide6.QtWidgets import QApplication, QMainWindow, QGraphicsDropShadowEffect, QDialog, QFileDialog
-from PySide6.QtCore import Qt, QPoint, QRect
-from PySide6 import QtWidgets
-from PySide6.QtCore import QByteArray
-from PySide6.QtCore import QDir
-from PIL import Image
+
 
 load_dotenv()
 
