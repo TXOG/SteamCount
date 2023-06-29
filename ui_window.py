@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'windowEiwFjC.ui'
+## Form generated from reading UI file 'windowZKxuMQ.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.3.1
 ##
@@ -31,19 +31,19 @@ class Ui_MainWindow(object):
         self.mainStack.setObjectName(u"mainStack")
         self.mainStack.setGeometry(QRect(-1, -1, 801, 601))
         self.mainStack.setStyleSheet(u"")
-        self.page = QWidget()
-        self.page.setObjectName(u"page")
-        self.title = QLabel(self.page)
+        self.setup = QWidget()
+        self.setup.setObjectName(u"setup")
+        self.title = QLabel(self.setup)
         self.title.setObjectName(u"title")
         self.title.setGeometry(QRect(6, 50, 791, 61))
         font = QFont()
-        font.setFamilies([u"Malgun Gothic"])
+        font.setFamilies([u"Segoe UI"])
         font.setPointSize(48)
         font.setBold(True)
         self.title.setFont(font)
         self.title.setStyleSheet(u"color: rgb(255, 255, 255);")
         self.title.setAlignment(Qt.AlignCenter)
-        self.apiKeyInput = QLineEdit(self.page)
+        self.apiKeyInput = QLineEdit(self.setup)
         self.apiKeyInput.setObjectName(u"apiKeyInput")
         self.apiKeyInput.setGeometry(QRect(240, 190, 321, 31))
         self.apiKeyInput.setStyleSheet(u"QWidget {\n"
@@ -58,7 +58,7 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "")
-        self.steamIDInput = QLineEdit(self.page)
+        self.steamIDInput = QLineEdit(self.setup)
         self.steamIDInput.setObjectName(u"steamIDInput")
         self.steamIDInput.setGeometry(QRect(240, 290, 321, 31))
         self.steamIDInput.setStyleSheet(u"QWidget {\n"
@@ -73,7 +73,7 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "")
-        self.submitButton = QPushButton(self.page)
+        self.submitButton = QPushButton(self.setup)
         self.submitButton.setObjectName(u"submitButton")
         self.submitButton.setGeometry(QRect(310, 390, 181, 31))
         self.submitButton.setStyleSheet(u"QPushButton {\n"
@@ -88,7 +88,7 @@ class Ui_MainWindow(object):
 "    background-color: #005fa3;\n"
 "	transform: scale(0.8);\n"
 "}")
-        self.background = QLabel(self.page)
+        self.background = QLabel(self.setup)
         self.background.setObjectName(u"background")
         self.background.setGeometry(QRect(-2, -5, 811, 611))
         self.background.setStyleSheet(u"background-image: url('./bg1.png');\n"
@@ -97,15 +97,15 @@ class Ui_MainWindow(object):
 "background-clip: border;\n"
 "background-size: 100% 100%;\n"
 "")
-        self.mainStack.addWidget(self.page)
+        self.mainStack.addWidget(self.setup)
         self.background.raise_()
         self.title.raise_()
         self.apiKeyInput.raise_()
         self.steamIDInput.raise_()
         self.submitButton.raise_()
-        self.page_2 = QWidget()
-        self.page_2.setObjectName(u"page_2")
-        self.mainStack.addWidget(self.page_2)
+        self.main = QWidget()
+        self.main.setObjectName(u"main")
+        self.mainStack.addWidget(self.main)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
