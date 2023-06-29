@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'windowePqSqy.ui'
+## Form generated from reading UI file 'windowyjINbA.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.3.1
 ##
@@ -131,6 +131,6 @@ class Ui_MainWindow(object):
         self.steamIDInput.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Input STEAM_ID", None))
         self.submitButton.setText(QCoreApplication.translate("MainWindow", u"Submit", None))
         self.background.setText("")
-        self.currentGameText.setText("")
+        self.currentGameText.setText(QCoreApplication.translate("MainWindow", u"Currently Playing: NONE", None))
     # retranslateUi
 

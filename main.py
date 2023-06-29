@@ -48,6 +48,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.submitButton.clicked.connect(lambda: self.createENV())
 
     def createENV(self):
+        global api_key
+        global steam_id
         api_key = self.apiKeyInput.text()
         steam_id = self.steamIDInput.text()
 
@@ -63,6 +65,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         else:
             return
+
+    def closeEvent(self, event):
+        event.accept()
 
 
 def requestAPIData(game_name):
@@ -84,6 +89,8 @@ def requestAPIData(game_name):
 
                 notification.notify(title=f"You have launched: {game_name}", message=f"Player Count: {playerCount}",
                                     timeout=5)
+
+                window.currentGameText.setText(("Currently Playing: " + game_name))
 
         return None
     else:
@@ -120,8 +127,5 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = MainWindow()
     window.setWindowTitle("Steam Count")
-    updateWindowThread = threading.Thread(
-        target=lambda: checkForGameChange())  # Use lambda to pass the method as a callable
-    updateWindowThread.start()
     window.show()
     sys.exit(app.exec())
