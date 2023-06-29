@@ -32,7 +32,7 @@
     <property name="styleSheet">
      <string notr="true"/>
     </property>
-    <widget class="QWidget" name="page">
+    <widget class="QWidget" name="setup">
      <widget class="QLabel" name="title">
       <property name="geometry">
        <rect>
@@ -44,7 +44,7 @@
       </property>
       <property name="font">
        <font>
-        <family>Malgun Gothic</family>
+        <family>Segoe UI</family>
         <pointsize>48</pointsize>
         <bold>true</bold>
        </font>
@@ -167,7 +167,7 @@ background-size: 100% 100%;
      <zorder>steamIDInput</zorder>
      <zorder>submitButton</zorder>
     </widget>
-    <widget class="QWidget" name="page_2"/>
+    <widget class="QWidget" name="main"/>
    </widget>
   </widget>
  </widget>
