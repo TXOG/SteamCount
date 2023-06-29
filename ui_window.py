@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'windowZKxuMQ.ui'
+## Form generated from reading UI file 'windowvDpCEv.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.3.1
 ##
@@ -105,6 +105,7 @@ class Ui_MainWindow(object):
         self.submitButton.raise_()
         self.main = QWidget()
         self.main.setObjectName(u"main")
+        self.main.setStyleSheet(u"background-color: rgb(27, 40, 56);")
         self.mainStack.addWidget(self.main)
         MainWindow.setCentralWidget(self.centralwidget)
 

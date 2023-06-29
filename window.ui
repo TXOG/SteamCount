@@ -167,7 +167,11 @@ background-size: 100% 100%;
      <zorder>steamIDInput</zorder>
      <zorder>submitButton</zorder>
     </widget>
-    <widget class="QWidget" name="main"/>
+    <widget class="QWidget" name="main">
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(27, 40, 56);</string>
+     </property>
+    </widget>
    </widget>
   </widget>
  </widget>
