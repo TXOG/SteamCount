@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'windowvDpCEv.ui'
+## Form generated from reading UI file 'windowePqSqy.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.3.1
 ##
@@ -106,6 +106,16 @@ class Ui_MainWindow(object):
         self.main = QWidget()
         self.main.setObjectName(u"main")
         self.main.setStyleSheet(u"background-color: rgb(27, 40, 56);")
+        self.currentGameText = QLabel(self.main)
+        self.currentGameText.setObjectName(u"currentGameText")
+        self.currentGameText.setGeometry(QRect(0, 30, 801, 61))
+        font1 = QFont()
+        font1.setFamilies([u"Segoe UI"])
+        font1.setPointSize(32)
+        font1.setBold(True)
+        self.currentGameText.setFont(font1)
+        self.currentGameText.setStyleSheet(u"color: rgb(255, 255, 255);")
+        self.currentGameText.setAlignment(Qt.AlignCenter)
         self.mainStack.addWidget(self.main)
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -121,5 +131,6 @@ class Ui_MainWindow(object):
         self.steamIDInput.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Input STEAM_ID", None))
         self.submitButton.setText(QCoreApplication.translate("MainWindow", u"Submit", None))
         self.background.setText("")
+        self.currentGameText.setText("")
     # retranslateUi
 
