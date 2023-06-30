@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'windowIzhlLC.ui'
+## Form generated from reading UI file 'windowkRsLQH.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.3
 ##
@@ -122,10 +122,10 @@ class Ui_MainWindow(object):
         self.gameImage.setAlignment(Qt.AlignCenter)
         self.currentPlayerNumber = QLabel(self.main)
         self.currentPlayerNumber.setObjectName(u"currentPlayerNumber")
-        self.currentPlayerNumber.setGeometry(QRect(0, 420, 801, 61))
+        self.currentPlayerNumber.setGeometry(QRect(0, 410, 801, 31))
         font2 = QFont()
         font2.setFamilies([u"Segoe UI"])
-        font2.setPointSize(20)
+        font2.setPointSize(16)
         font2.setBold(True)
         self.currentPlayerNumber.setFont(font2)
         self.currentPlayerNumber.setStyleSheet(u"color: rgb(255, 255, 255);")
@@ -143,6 +143,32 @@ class Ui_MainWindow(object):
         self.playerName.setFont(font3)
         self.playerName.setStyleSheet(u"color: rgb(255, 255, 255);")
         self.playerName.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.logoutButton = QPushButton(self.main)
+        self.logoutButton.setObjectName(u"logoutButton")
+        self.logoutButton.setGeometry(QRect(690, 550, 101, 41))
+        font4 = QFont()
+        font4.setBold(True)
+        self.logoutButton.setFont(font4)
+        self.logoutButton.setLayoutDirection(Qt.LeftToRight)
+        self.logoutButton.setStyleSheet(u"QPushButton {\n"
+"    background-color: #66c0f4;\n"
+"    color: #ffffff;\n"
+"    border: none;\n"
+"    padding: 8px;\n"
+"    border-radius: 3px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #005fa3;\n"
+"	transform: scale(0.8);\n"
+"}")
+        self.logoutButton.setFlat(False)
+        self.playerGameTime = QLabel(self.main)
+        self.playerGameTime.setObjectName(u"playerGameTime")
+        self.playerGameTime.setGeometry(QRect(0, 450, 801, 31))
+        self.playerGameTime.setFont(font2)
+        self.playerGameTime.setStyleSheet(u"color: rgb(255, 255, 255);")
+        self.playerGameTime.setAlignment(Qt.AlignCenter)
         self.mainStack.addWidget(self.main)
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -163,5 +189,7 @@ class Ui_MainWindow(object):
         self.currentPlayerNumber.setText(QCoreApplication.translate("MainWindow", u"Current Players: NONE", None))
         self.pfpImage.setText("")
         self.playerName.setText("")
+        self.logoutButton.setText(QCoreApplication.translate("MainWindow", u"Logout", None))
+        self.playerGameTime.setText(QCoreApplication.translate("MainWindow", u"Total Play Time: NONE", None))
     # retranslateUi
 

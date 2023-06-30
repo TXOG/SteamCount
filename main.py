@@ -15,6 +15,7 @@ exitLoop = False
 
 currentGameName = ""
 game_name = ""
+personaName = ""
 
 api_key = os.getenv('API_KEY')
 steam_id = os.getenv('STEAM_ID')
@@ -36,7 +37,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 response = requests.get(player_info['avatarmedium'])
 
                 if response.status_code == 200:
-                    print("Woooo")
                     with open("profilePicture.jpg", "wb") as f:
                         f.write(response.content)
                         f.close()
@@ -57,12 +57,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.mainStack.setCurrentWidget(self.setup)
 
         self.submitButton.clicked.connect(lambda: self.createENV())
+        self.logoutButton.clicked.connect(lambda: self.logoutUser())
 
     def createENV(self):
         global api_key
         global steam_id
-        api_key = self.apiKeyInput.text()
-        steam_id = self.steamIDInput.text()
+        api_key = self.apiKeyInput.text().strip()
+        steam_id = self.steamIDInput.text().strip()
 
         if len(api_key) > 0 and len(steam_id) > 0:
             with open('.env', 'w+') as envfile:
@@ -97,9 +98,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         else:
             return
 
+    def logoutUser(self):
+        os.remove(".env")
+        self.mainStack.setCurrentWidget(self.setup)
+
     def closeEvent(self, event):
         event.accept()
-
 
 def requestAPIData(game_name):
     url = f"https://api.steampowered.com/ISteamApps/GetAppList/v2/"
@@ -111,8 +115,12 @@ def requestAPIData(game_name):
 
         for app in app_list:
             if app['name'] == game_name:
-                url = "http://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v0001/?appid=" + str(
-                    app['appid'])
+                
+                appID = app['appid']
+
+                ###### GETTING GAME PLAYER COUNT AND GAME IMAGE ########
+
+                url = f"https://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v0001/?appid={app['appid']}"
 
                 response = requests.get(url)
 
@@ -131,6 +139,48 @@ def requestAPIData(game_name):
                 else:
                     print("Error getting image")
 
+
+                ###### GETTING USERS GAME TIME ######
+
+                url = f'https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key={api_key}&steamid={steam_id}&format=json'
+                
+                response = requests.get(url)
+                data = response.json()
+                
+                if 'response' in data and 'games' in data['response']:
+                    games = data['response']['games']
+                    for game in games:
+                        if game['appid'] == app['appid']:
+                            currentMinutesPlayed = game['playtime_forever']
+                            break
+
+                        else:
+                            currentMinutesPlayed = 0
+
+
+                ##### GETTING USER STATS FOR THE CURRENT GAME #####
+
+                url = f'https://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v2/?appid={appID}&key={api_key}&steamid={steam_id}'
+    
+                response = requests.get(url)
+                data = response.json()
+                
+                if 'playerstats' in data:
+                    stats = data['playerstats']
+
+                    print(stats)
+
+
+                window.pfpImage.setStyleSheet('''
+                    background-image: url('./profilePicture.jpg');
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-origin: content;
+                    background-clip: border;
+                ''')
+
+                window.playerName.setText(personaName)
+
                 window.currentGameText.setText(("Currently Playing: " + game_name))
                 window.currentGameText.setStyleSheet('''
                 color: '#42C236'
@@ -144,7 +194,9 @@ def requestAPIData(game_name):
                 background-origin: content;
                 background-clip: border;
                 ''')
-                window.currentPlayerNumber.setText(("Current Players: " + playerCount))
+
+                window.currentPlayerNumber.setText((f"Current Players: {playerCount}"))
+                window.playerGameTime.setText((f"Total Play Time: {round(currentMinutesPlayed / 60, 2)} Hours"))
 
         return None
     else:
@@ -153,6 +205,8 @@ def requestAPIData(game_name):
 
 def checkForGameChange():
     global currentGameName
+    global personaName
+
     while True:
         url = f"https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key={api_key}&steamids={steam_id}"
         response = requests.get(url)
@@ -160,6 +214,8 @@ def checkForGameChange():
         if response.status_code == 200:
             data = response.json()
             player_info = data['response']['players'][0]
+
+            personaName = player_info['personaname']
 
             if 'gameextrainfo' in player_info:
                 game_name = player_info['gameextrainfo']
@@ -177,7 +233,7 @@ def checkForGameChange():
                     background-clip: border;
                 ''')
 
-                window.playerName.setText(player_info['personaname'])
+                window.playerName.setText(personaName)
 
                 window.currentGameText.setText(("Currently Playing: NONE"))
                 window.currentGameText.setStyleSheet('''
@@ -187,6 +243,8 @@ def checkForGameChange():
                                 background-image: url('./placeholder.jpg');
                                 ''')
                 window.currentPlayerNumber.setText(("Current Players: NONE"))
+                window.playerGameTime.setText(("Total Play Time: NONE"))
+
         time.sleep(0.1)
 
 
