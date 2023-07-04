@@ -158,19 +158,6 @@ def requestAPIData(game_name):
                             currentMinutesPlayed = 0
 
 
-                ##### GETTING USER STATS FOR THE CURRENT GAME #####
-
-                url = f'https://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v2/?appid={appID}&key={api_key}&steamid={steam_id}'
-    
-                response = requests.get(url)
-                data = response.json()
-                
-                if 'playerstats' in data:
-                    stats = data['playerstats']
-
-                    print(stats)
-
-
                 window.pfpImage.setStyleSheet('''
                     background-image: url('./profilePicture.jpg');
                     background-position: center;
@@ -201,7 +188,6 @@ def requestAPIData(game_name):
         return None
     else:
         return None
-
 
 def checkForGameChange():
     global currentGameName
@@ -246,7 +232,6 @@ def checkForGameChange():
                 window.playerGameTime.setText(("Total Play Time: NONE"))
 
         time.sleep(0.1)
-
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
