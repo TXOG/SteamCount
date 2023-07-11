@@ -16,6 +16,7 @@ exitLoop = False
 currentGameName = ""
 game_name = ""
 personaName = ""
+personLevel = 0
 
 api_key = os.getenv('API_KEY')
 steam_id = os.getenv('STEAM_ID')
@@ -41,6 +42,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                         f.write(response.content)
                         f.close()
 
+                    response = requests.get(player_info['avatarfull'])
+
+                    with open("profilePictureLarge.jpg","wb") as f:
+                        f.write(response.content)
+                        f.close()
+
                 else:
                     print("Error getting profile picture")
 
@@ -52,12 +59,50 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             updateWindowThread.start()
             self.mainStack.setCurrentWidget(self.main)
 
-
         else:
             self.mainStack.setCurrentWidget(self.setup)
 
         self.submitButton.clicked.connect(lambda: self.createENV())
         self.logoutButton.clicked.connect(lambda: self.logoutUser())
+        self.pfpImage.clicked.connect(lambda: self.loadProfilePage())
+
+    def loadProfilePage(self):
+
+        global personLevel
+
+        # ##### GETTING THE USERS LEVEL #####
+        # url = f'https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key={api_key}&steamids={steam_id}'
+        
+        # response = requests.get(url)
+        # data = response.json()
+
+
+        # if 'response' in data and 'players' in data['response']:
+        #     players = data['response']['players']
+        #     if players:
+        #         player = players[0]  # Assuming only one player is returned
+        #         if 'player_level' in player:
+        #             personLevel = player['player_level']
+
+        #         else:
+        #             print("Error")
+
+        self.mainStack.setCurrentWidget(self.profilePage)
+
+        window.BackBtn.clicked.connect(lambda: self.mainStack.setCurrentWidget(self.main))
+
+        window.ProfilePicture.setStyleSheet('''
+            background-image: url('./profilePictureLarge.jpg');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-origin: content;
+            background-clip: border;
+        ''')
+
+        window.NameOfPlayer.setText(f"Username: {personaName}")
+
+        window.LevelOfPlayer.setText(f"Profile Level: {personLevel}")
+
 
     def createENV(self):
         global api_key
@@ -115,8 +160,6 @@ def requestAPIData(game_name):
 
         for app in app_list:
             if app['name'] == game_name:
-                
-                appID = app['appid']
 
                 ###### GETTING GAME PLAYER COUNT AND GAME IMAGE ########
 
@@ -164,6 +207,7 @@ def requestAPIData(game_name):
                     background-repeat: no-repeat;
                     background-origin: content;
                     background-clip: border;
+                    border: 0%;
                 ''')
 
                 window.playerName.setText(personaName)
@@ -217,6 +261,7 @@ def checkForGameChange():
                     background-repeat: no-repeat;
                     background-origin: content;
                     background-clip: border;
+                    border: 0%;
                 ''')
 
                 window.playerName.setText(personaName)
